@@ -1,0 +1,231 @@
+						ADDING TUPLES TO THE TABLES
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+			
+					Shop	
+		
+INSERT INTO Shop (shop_name)
+VALUES ('Chocolate');
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Categories
+
+INSERT INTO Categories (category_name) 
+VALUES ('Milk Chocolate');
+
+INSERT INTO Categories (category_name) 
+VALUES ('White Chocolate');
+
+INSERT INTO Categories (category_name) 
+VALUES ('Bitter Chocolate');
+
+INSERT INTO Categories (category_name) 
+VALUES ('Chocolate with Nuts');
+
+INSERT INTO Categories (category_name) 
+VALUES ('Chocolate with Raisin');
+
+---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Products
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (1, 'Milka Milk Chocolate', 'Milk Chocolate made by Milka, very tasty', 560);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (1, 'Nestle Milk Chocolate', 'Milk Chocolate made by Nestle, very tasty and milky', 470);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (1, 'Alpen Gold Milk Chocolate', 'Milk Chocolate made by Alpen Gold, very soft', 1470);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (2, 'Vozdushniy White Chocolate', 'White Chocolate called Vozdushniy, the best chocolate', 720);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (2, 'Alpen Gold White Chocolate', 'White Chocolate made by Alpen Gold, very delicios', 580);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (2, 'Roshen White Chocolate', 'White Chocolate made by Roshen, very tender', 1580);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (3, 'Kazakhstan Bitter Chocolate', 'Bitter Chocolate, national chocolate of Kazakhstan', 820);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (3, 'Roshen Bitter Chocolate', 'Bitter Chocolate made by Roshen, bitterest chocolate', 690);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (3, 'Alpen Gold Bitter Chocolate', 'Bitter Chocolate made by Alpen Gold, excellent', 1690);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (4, 'Alpen Gold Chocolate with Nuts', 'Alpen Gold Chocolate with forrest nuts, mmm', 890);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (4, 'Ozera Chocolate with Nuts', 'Ozera Chocolate with lake nuts, finger-licking good', 1090);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (5, 'Alpen Gold Chocolate with Raisin', 'Alpen Gold Chocolate with dry grape, mamma mia', 890);
+
+INSERT INTO Products (category_id, product_name, product_description, product_price) 
+VALUES (5, 'Nestle Chocolate with Raisin', 'Nestle Chocolate with grape without juice, wow', 670);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Clients
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Sultan', 'Nazarov', 'sultan.nazarov@gmail.com', 'Zharokova', 24, 87078089009)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Aziya', 'Zhumabaeva', 'aziya.zhumabaeva@gmail.com', 'Abay', 55, 87079098008)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Marina', 'Krovtsova', 'marina.krovtsova@gmail.com', 'Nazarbayev', 19, 87079997890)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Danil', 'Orlov', 'danil.orlov@gmail.com', 'Navoi', 19, 87075678756)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Alikhan', 'Serikuly', 'a.s@gmail.com', 'Pavlodar', 55, 87771657585)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Magzhan', 'Sultanbek', 'm.s@gmail.com', 'Almaty', 83, 87769602330)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Sultanbek', 'Magzhan', 's.m@gmail.com', 'Nazarbaev', 43, 87479605643)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Sartayev', 'Aset', 's.a@gmail.com', 'Al-Farabi', 33, 87474563321)
+
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Bekzhan', 'Daniyarov', 'b.d@gmail.com', 'Shalyapin', 52, 87475236565)
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Orders
+
+INSERT INTO Orders (client_id, order_price, order_status)
+VALUES (1, 1980, 'Processing')
+
+INSERT INTO Orders (client_id, order_price, order_status)
+VALUES (3, 3380, 'Shipping')
+
+INSERT INTO Orders (client_id, order_price, order_status)
+VALUES (4, 2180, 'Delivered')
+
+INSERT INTO Orders (client_id, order_price, order_status)
+VALUES (2, 4180, 'Processing')
+
+INSERT INTO Orders (client_id, order_price, order_status)
+VALUES (4, 4590, 'Shipping')
+
+INSERT INTO Orders (client_id, order_price, order_status)
+VALUES (6, 3790, 'Delivered')
+
+INSERT INTO Orders (client_id, order_price, order_status)
+VALUES (7, 6590, 'Processing')
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Employs
+
+INSERT INTO Employs (employ_name, employ_surname, employ_position, employ_mail, employ_street, employ_house, employ_phone)
+VALUES ('Maxim', 'Kim', 'manager', 'maxim.kim@gmail.com', 'Abay', 8, 87770002345)
+
+INSERT INTO Employs (employ_name, employ_surname, employ_position, employ_mail, employ_street, employ_house, employ_phone)
+VALUES ('Aidana', 'Akhmieva', 'SMM manager', 'aidana.akhmieva@gmail.com', 'Momushili', 45, 87755582332)
+
+INSERT INTO Employs (employ_name, employ_surname, employ_position, employ_mail, employ_street, employ_house, employ_phone)
+VALUES ('Adilzhan', 'Kambarov', 'Shop assistant', 'adilzhan.kambarov@gmail.com', 'Gagarin', 43, 877777778888)
+
+INSERT INTO Employs (employ_name, employ_surname, employ_position, employ_mail, employ_street, employ_house, employ_phone)
+VALUES ('Karina', 'Nazarova', 'System administrator', 'karina.nazarova@gmail.com', 'Zhandosov', 32, 87015669898)
+
+INSERT INTO Employs (employ_name, employ_surname, employ_position, employ_mail, employ_street, employ_house, employ_phone)
+VALUES ('Aruzhan', 'Seksenali', 'Support manager', 'aruzhan.seksenali@gmail.com', 'Shalyapin', 4, 87085226931)
+
+INSERT INTO Employs (employ_name, employ_surname, employ_position, employ_mail, employ_street, employ_house, employ_phone)
+VALUES ('Nurmuhambed', 'Kuat', 'HR manager', 'nur.kuat@gmail.com', 'Kirova', 56, 87779698984)
+
+INSERT INTO Employs (employ_name, employ_surname, employ_position, employ_mail, employ_street, employ_house, employ_phone)
+VALUES ('Ayan', 'Rashidov', 'PR manager', 'ayan.rashid@gmail.com', 'Abay', 6, 87778529632)
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Yandex
+
+INSERT INTO Yandex (name)
+VALUES ('Yandex')
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Couriers
+
+INSERT INTO Couriers (order_id)
+VALUES (1)
+
+INSERT INTO Couriers (order_id)
+VALUES (2)
+
+INSERT INTO Couriers (order_id)
+VALUES (3)
+
+INSERT INTO Couriers (order_id)
+VALUES (4)
+
+INSERT INTO Couriers (order_id)
+VALUES (6)
+
+INSERT INTO Couriers (order_id)
+VALUES (7)
+
+INSERT INTO Couriers (order_id)
+VALUES (8)
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Reviews
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (1, 'The best chocolate shop in town, very tasty chocolate, fast delivery, polite courier, thank you very much', 5)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (3, 'Tasty chocolate, but it takes too long for answering me in instagram', 4)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (2, 'The place is pretty good but I am not satisfied with the service', 3)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (4, 'I hate this place', 1)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (5, 'This shop is the best shop I have ever seen', 5)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (6, 'I recommend this shop for everyone', 5)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (7, 'My order came a little bit late but it is ok', 4)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (8, 'My order came on time and really liked the chocolate', 5)
+
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (9, 'You are the best', 5)
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+ALTER TABLE Categories MODIFY category_id GENERATED BY DEFAULT AS IDENTITY (START WITH 4);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------

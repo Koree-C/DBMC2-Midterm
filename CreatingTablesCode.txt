@@ -1,0 +1,127 @@
+						CREATING TABLES
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Shop
+
+CREATE TABLE Shop (
+    shop_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    shop_name VARCHAR(20) NOT NULL,
+    PRIMARY KEY (shop_id)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Categories
+
+CREATE TABLE Categories (
+    category_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    category_name VARCHAR2(50) NOT NULL,
+    PRIMARY KEY (category_id)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Products
+
+CREATE TABLE Products (
+    product_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    category_id NUMBER NOT NULL,
+    product_name VARCHAR2(50) NOT NULL,
+    product_description VARCHAR2(100) NOT NULL,
+    product_price NUMBER NOT NULL,
+    PRIMARY KEY (product_id),
+    FOREIGN KEY (category_id) REFERENCES Categories (category_id)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Clients
+
+CREATE TABLE Clients (
+    client_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    client_name VARCHAR2(50) NOT NULL,
+    client_surname VARCHAR2(50) NOT NULL,
+    client_mail VARCHAR2(100) NOT NULL UNIQUE,
+    client_street VARCHAR2(100) NOT NULL,
+    client_house NUMBER NOT NULL,
+    client_phone NUMBER NOT NULL,
+    PRIMARY KEY (client_id)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Orders
+
+CREATE TABLE Orders (
+    order_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    client_id NUMBER NOT NULL,
+    order_price NUMBER NOT NULL,
+    order_status VARCHAR2(20) NOT NULL,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (client_id) REFERENCES Clients (client_id)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Employs
+
+CREATE TABLE Employs (
+    employ_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    employ_name VARCHAR2(50) NOT NULL,
+    employ_surname VARCHAR2(50) NOT NULL,
+    employ_position VARCHAR2(50) NOT NULL,
+    employ_mail VARCHAR2(100) NOT NULL UNIQUE,
+    employ_street VARCHAR2(100) NOT NULL,
+    employ_house NUMBER NOT NULL,
+    employ_phone NUMBER NOT NULL,
+    PRIMARY KEY (employ_id)
+);
+
+(Employee table was already exist, so I used Employ)
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Yandex
+
+CREATE TABLE Yandex (
+    name VARCHAR(6),
+    PRIMARY KEY (name)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Couriers
+
+CREATE TABLE Couriers (
+    courier_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    order_id NUMBER NOT NULL,
+    PRIMARY KEY (courier_id),
+    FOREIGN KEY (order_id) REFERENCES Orders (order_id)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+					Reviews
+
+CREATE TABLE Reviews (
+    review_id NUMBER GENERATED ALWAYS AS IDENTITY,
+    client_id NUMBER NOT NULL,
+    review_text VARCHAR(200),
+    review_rating NUMBER(1) NOT NULL,
+    PRIMARY KEY (review_id),
+    FOREIGN KEY (client_id) REFERENCES Clients (client_id)
+);
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+						

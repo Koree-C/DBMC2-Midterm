@@ -1,0 +1,163 @@
+						PL SQL CODE
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+				Procedure which does group by information 
+
+CREATE OR REPLACE PROCEDURE getProductsByCategory (
+  c_category_id IN Categories.category_id%TYPE,
+  c_cur OUT SYS_REFCURSOR
+) AS
+BEGIN
+  OPEN c_cur FOR
+    SELECT C.category_name, P.product_name, P.product_price
+    FROM Categories C
+    JOIN Products P ON P.category_id = C.category_id
+    WHERE P.category_id = c_category_id
+    GROUP BY C.category_name, P.product_name, P.product_price;
+END;
+/
+
+
+---------
+Example:
+
+DECLARE
+  v_cur SYS_REFCURSOR;
+  v_category_name Categories.category_name%TYPE;
+  v_product_name Products.product_name%TYPE;
+  v_product_price Products.product_price%TYPE;
+BEGIN
+  getProductsByCategory(1, v_cur);
+  
+  LOOP
+    FETCH v_cur INTO v_category_name, v_product_name, v_product_price;
+    EXIT WHEN v_cur%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(v_category_name || ', ' || v_product_name || ', ' || v_product_price);
+  END LOOP;
+  
+  CLOSE v_cur;
+END;
+/
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+				Function which counts the number of records 
+
+CREATE OR REPLACE FUNCTION productCountOfCategory (
+    c_category_id IN Categories.category_id%TYPE
+) RETURN NUMBER AS
+    v_count NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO v_count
+    FROM Products P
+    JOIN Categories C ON P.category_id = C.category_id
+    WHERE C.category_id = c_category_id;
+
+    RETURN v_count;
+END;
+
+
+---------
+Example:
+
+DECLARE
+    v_count NUMBER;
+BEGIN
+    v_count := productCountOfCategory(3);
+    dbms_output.put_line(v_count);
+END;
+/
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+				Procedure which uses SQL%ROWCOUNT to determine the number of rows affected
+
+CREATE OR REPLACE PROCEDURE deleteOrdersOfClient (
+    p_client_id IN Clients.client_id%TYPE
+) AS
+BEGIN
+    DELETE FROM Orders
+    WHERE client_id = p_client_id;
+
+    IF SQL%ROWCOUNT > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Deleted ' || SQL%ROWCOUNT || ' orders, that make client with id: ' || p_client_id);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Client with id ' || p_client_id || ' did not order any chocolate');
+    END IF;
+END; 
+
+
+---------
+Example:
+
+DECLARE
+BEGIN
+    deleteOrdersOfClient(1);
+END;
+/
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+				Add user-defined exception which disallows to enter title of item
+
+CREATE OR REPLACE TRIGGER appropriateRatingMark
+BEFORE INSERT ON Reviews 
+FOR EACH ROW
+DECLARE
+BEGIN
+    IF :NEW.review_rating < 1 OR :NEW.review_rating > 5 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Rating mark cannot be less than 1 or more than 5');
+    END IF;  
+END;
+
+
+---------
+Example:
+INSERT INTO Reviews (client_id, review_text, review_rating)
+VALUES (3, 'Tasty chocolate, but it takes too long for answering me in instagram', 9)
+
+Output:
+ORA-20001: Rating mark cannot be less than 1 or more than 5
+
+
+// I used another syntax, different than syntax in lecture. Firstly I whote Exception Handling like in the lecture slides, everything worked, exception message appeared on the screen, however data was added to the table, so I read forums from the Internet and find solution RAISE_APPLICATION_ERROR
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+				Create a trigger before insert on any entity which will show the current number of rows in the table
+
+CREATE OR REPLACE TRIGGER rowCount
+BEFORE INSERT ON Clients
+DECLARE
+    row_count NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO row_count FROM Clients;
+    DBMS_OUTPUT.PUT_LINE('Current row count in the Clients table: ' || row_count);
+END; 
+
+
+---------
+Example:
+INSERT INTO Clients (client_name, client_surname, client_mail, client_street, client_house, client_phone)
+VALUES ('Zhanibeck', 'Kupesbaev', 'zhanibek.kupesbaev@gmail.com', 'Shevchenko', 165, 87771110000)
+
+Output:
+Current row count in the Clients table: 4
+
+
+
+
+
+
+
+
+
+
+
